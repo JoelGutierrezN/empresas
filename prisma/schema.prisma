@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DB_HOST")
+}
+
+model corporations {
+  id              Int     @id @default(autoincrement())
+  Document        String? @db.VarChar(20)
+  Name            String? @db.VarChar(255)
+  Status          String? @db.VarChar(255)
+  Address         String? @db.VarChar(255)
+  City            String? @db.VarChar(255)
+  State           String? @db.VarChar(255)
+  Zip             String? @db.VarChar(25)
+  Mail_Addr       String? @db.VarChar(255)
+  Mail_City       String? @db.VarChar(255)
+  Mail_State      String? @db.VarChar(255)
+  Mail_Zip        String? @db.VarChar(25)
+  File_Date       String? @db.VarChar(100)
+  FEIN            String? @db.VarChar(255)
+  Person1_Title   String? @db.VarChar(255)
+  Person1_Type    String? @db.VarChar(255)
+  Person1_Name    String? @db.VarChar(255)
+  Person1_Address String? @db.VarChar(255)
+  Person1_City    String? @db.VarChar(255)
+  Person1_State   String? @db.VarChar(255)
+  Person1_Zip     String? @db.VarChar(25)
+  Person2_Title   String? @db.VarChar(255)
+  Person2_Type    String? @db.VarChar(255)
+  Person2_Name    String? @db.VarChar(255)
+  Person2_Address String? @db.VarChar(255)
+  Person2_City    String? @db.VarChar(255)
+  Person2_State   String? @db.VarChar(255)
+  Person2_Zip     String? @db.VarChar(25)
+  Person3_Title   String? @db.VarChar(255)
+  Person3_Type    String? @db.VarChar(255)
+  Person3_Name    String? @db.VarChar(255)
+  Person3_Address String? @db.VarChar(255)
+  Person3_City    String? @db.VarChar(255)
+  Person3_State   String? @db.VarChar(255)
+  Person3_Zip     String? @db.VarChar(25)
+  Person4_Title   String? @db.VarChar(255)
+  Person4_Type    String? @db.VarChar(255)
+  Person4_Name    String? @db.VarChar(255)
+  Person4_Address String? @db.VarChar(255)
+  Person4_City    String? @db.VarChar(255)
+  Person4_State   String? @db.VarChar(255)
+  Person4_Zip     String? @db.VarChar(25)
+  Person5_Title   String? @db.VarChar(255)
+  Person5_Type    String? @db.VarChar(255)
+  Person5_Name    String? @db.VarChar(255)
+  Person5_Address String? @db.VarChar(255)
+  Person5_City    String? @db.VarChar(255)
+  Person5_State   String? @db.VarChar(255)
+  Person5_Zip     String? @db.VarChar(25)
+  Person6_Title   String? @db.VarChar(255)
+  Person6_Type    String? @db.VarChar(255)
+  Person6_Name    String? @db.VarChar(255)
+  Person6_Address String? @db.VarChar(255)
+  Person6_City    String? @db.VarChar(255)
+  Person6_State   String? @db.VarChar(255)
+  Person6_Zip     String? @db.VarChar(25)
+  date_id         BigInt  @db.UnsignedBigInt
+  dates           dates   @relation(fields: [date_id], references: [id], onDelete: Cascade, map: "corporations_dates_id_fk")
+
+  @@index([date_id], map: "corporations_dates_id_fk")
+}
+
+model dates {
+  id           BigInt         @id @default(autoincrement()) @db.UnsignedBigInt
+  date         DateTime       @db.Date
+  corporations corporations[]
+}
